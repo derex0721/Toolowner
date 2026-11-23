@@ -1,0 +1,75 @@
+name: 🐞 Bug report / 錯誤回報
+description: Something in Toolowner does not work as expected. Toolowner 有地方不如預期。
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!CAUTION]
+        > **Never paste a recovery key, a sync passphrase, an API key or the content of private notes here. Issues are public and cannot be fully deleted.**
+        > **請勿貼上任何復原金鑰、同步密碼、API 金鑰或私人筆記內容。Issue 是公開的，而且無法完全刪除。**
+        >
+        > Found a security problem? Please report it privately instead: see [SECURITY.md](https://github.com/derex0721/toolowner/blob/main/SECURITY.md).
+        > 發現安全性問題？請改為私下回報，見 [SECURITY.md](https://github.com/derex0721/toolowner/blob/main/SECURITY.md)。
+  - type: checkboxes
+    id: no-secrets
+    attributes:
+      label: Before you send / 送出之前
+      options:
+        - label: This report contains no recovery key, sync passphrase, API key or private note content. 這則回報沒有任何復原金鑰、同步密碼、API 金鑰或私人筆記內容。
+          required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened / 發生了什麼
+      description: What did you do, what did you expect, and what happened instead? 你做了什麼、預期是什麼、實際發生什麼？
+      placeholder: |
+        1. Open My Note …
+        2. Type …
+        3. Expected … but saw …
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area / 功能區
+      options:
+        - Chat / 對話
+        - My Note / 我的筆記
+        - Toolbox / 工具庫
+        - Template Studio / 模板工作室
+        - Sync & account / 同步與帳號
+        - LAN direct transfer (Beta) / 區域網路直傳
+        - Outside AI (BYO API) / 外部 AI
+        - Website / 官網
+        - Other / 其他
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version / 瀏覽器與版本
+      placeholder: Chrome 131, Safari 18.1 …
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and OS / 裝置與作業系統
+      placeholder: Pixel 8 / Android 15, MacBook Air / macOS 15 …
+    validations:
+      required: true
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme / 主題
+      options:
+        - Light / 淺色
+        - Dark / 深色
+        - System / 跟隨系統
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or console errors / 截圖或主控台錯誤
+      description: Use sample data only. Cover any personal content before uploading. 請只用範例資料，上傳前遮住任何個人內容。

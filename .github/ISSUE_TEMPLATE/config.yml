@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Report a security vulnerability (private)
+    url: https://github.com/derex0721/toolowner/security/advisories/new
+    about: Please report security problems privately, never in a public issue. 安全性問題請私下回報，不要開公開 Issue。
+  - name: 📖 Security & privacy whitepaper
+    url: https://toolowner.pages.dev/security
+    about: How Toolowner handles your data and how to check it yourself. Toolowner 如何處理你的資料，以及如何自己檢查。
+  - name: ✨ All features
+    url: https://toolowner.pages.dev/features
+    about: Every feature with its boundary. 每一項功能與它的邊界。

@@ -1,0 +1,43 @@
+name: 💡 Feature request / 功能建議
+description: Suggest something Toolowner could do. 建議 Toolowner 可以做的事。
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Toolowner does on the device whatever fixed rules can do, and uses outside AI only with your approval. Ideas that keep your data on your device are the easiest to say yes to.
+        Toolowner 能用固定規則在本機完成的事就在本機做，外部 AI 只在你核准時使用。能讓資料留在你裝置上的點子，最容易被採納。
+
+        Please do not paste private note content or any key. 請勿貼上私人筆記內容或任何金鑰。
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem / 想解決的問題
+      description: What are you trying to do, and what gets in the way today? 你想做什麼？現在卡在哪裡？
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea / 你的想法
+      description: How would you like it to work? 你希望它怎麼運作？
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area / 功能區
+      options:
+        - Chat / 對話
+        - My Note / 我的筆記
+        - Toolbox / 工具庫
+        - Template Studio / 模板工作室
+        - Sync & account / 同步與帳號
+        - Website / 官網
+        - Other / 其他
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you use today / 目前的替代做法
+      description: Optional. 選填。
