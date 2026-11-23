@@ -24,7 +24,7 @@ A local-first personal capability layer: tools, notes and chat in one private wo
 <p>
   <a href="https://toolowner.pages.dev"><b>Website →</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://toolownert1.pages.dev"><b>Open the web app (no install, no sign-up) →</b></a>
+  <a href="https://toolownert1.pages.dev"><b>Open the web app: sign in or use an invite link →</b></a>
 </p>
 
 </div>
@@ -49,7 +49,7 @@ Most AI tools send everything to a server and bill you per request. Toolowner do
 
 ## What it does
 
-**01 · Local first, no account needed.** Open the page and start. Tools run in your browser, and what you make stays on this device by default. If the device can do it, AI is not asked.
+**01 · Local first, sign in to begin.** Activate your account with a friend’s invite link, or simply sign in, then collect early-bird points and choose whether to turn on end-to-end encrypted sync. Tools run in your browser, and what you make stays on this device by default. If the device can do it, AI is not asked.
 
 **02 · My Note that adds up, and covers up.** Write `1200 + 350*2 =` in a note and the answer is offered; `=SUM(ABOVE)` adds up the lines above. A line starting with `!!` stays covered until tapped, and covers itself again after 5 seconds. Chapters for long notes, a calendar reminder (.ics) for a to-do and related older notes are there too. All on the device, 0 tokens.
 
