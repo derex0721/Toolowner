@@ -42,6 +42,24 @@ Sync is optional and off until you turn it on. Encryption and decryption happen 
 
 **LAN direct transfer (Beta)** pairs two devices on the same network with a one-time 6-digit code and QR codes, makes a one-time key per connection with ECDH, seals the file with AES-256-GCM and checks a SHA-256 hash on arrival. It passes through no server and never touches the sync key.
 
+## Before anything goes to an outside AI
+
+Outside AI is used only with your own API key (BYOK) and only after you approve the call on the approval card. Since 25 November 2026:
+
+- **Reversible placeholders.** Keys and tokens, My Note shield lines (`!! …`), e-mails, paths on your computer and, with masking on, phone numbers are replaced with `{{SECRET_1}}`, `{{EMAIL_1}}`, `{{PATH_1}}`, `{{PHONE_1}}` and so on, in the sentence and in every field. The approval card shows exactly what is sent. The answer is put back on your device; a placeholder the model dropped or invented is left as it is. The table of originals lives in memory for that one call and is then cleared; it is never written to storage, a log, a trace or sync.
+- **Risk tiers.** Every action is graded again each time from its own definition: Tier 0 reads, Tier 1 writes on this device (path arguments may not contain `..`, an absolute path, `~`, a drive letter, a URL scheme or NUL, URL-encoded forms included), Tier 2 sends, deletes or calls a provider and always waits for your confirmation. A caller or a model cannot lower a tier.
+- **Bounded output check.** An answer that does not match the expected shape is asked for once more at most, then shown as unverified and not applied.
+- **Backup routes that rest.** A route that answers 429, a server error or nothing in time rests (60 s or Retry-After; 30 s doubling up to 5 minutes) and later calls start with one that is not resting. Only the order of routes you approved changes.
+- **Guard log.** Settings › Privacy keeps the last 50 outside-AI calls on this device: trace id, time, route, how many items were masked, tier and check result. There is no field that can hold text. It is not synced or exported.
+
+## AI context version history
+
+What you attach to a chat as context keeps up to 20 versions per target on this device, with a content hash checked when read back (a tampered version is dropped). Restoring first keeps what is on screen as a version. The history is never synced, and it is stored like your Library: encrypted with your master password when one is set, and unreadable while locked.
+
+## Companion CLI
+
+`toolowner` (v1 spec) runs the app's own My Note, link-card and masking functions on a computer. It makes no network request and reads no sign-in session, API key or cloud setting. `guard scan` prints only placeholders and counts, never the originals, and an error never repeats its input. Every file it writes (`--out`) must stay inside the chosen root folder (`..`, outside paths and symbolic links are refused with exit code 2); what was there is backed up first and a receipt id lets `toolowner undo` put it back. See [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
+
 ## Verify it yourself with the Network panel
 
 Open your browser's developer tools (F12, or ⌥⌘I on a Mac), go to the **Network** tab and clear the list.
@@ -59,6 +77,8 @@ Open your browser's developer tools (F12, or ⌥⌘I on a Mac), go to the **Netw
 - "Start over", for when every old device is lost, needs only a signed-in session, so a stolen session could delete the cloud copy of your sync data (never the notes on any device). A cancellable delay is not built yet.
 - Recovery-key takeover is rate-limited: five wrong tries in a row lock it for an hour, and every try is logged.
 - Key rotation is not implemented yet, and neither is pairing that hands the sync key to a new device by QR code.
+- Masking before outside AI is rule-based. A secret in a shape the rules do not know (a password written out in words, for example) is not found. The placeholders keep known shapes from leaving; they do not prove that nothing sensitive leaves.
+- The guard log and the AI context version history live only on this device: clearing site data or changing devices removes them.
 - No third-party security audit report is available at this time.
 - A compromised device or browser is out of scope: local data can be read in that case too.
 
@@ -106,6 +126,24 @@ Toolowner 不公開原始碼，所以這份文件直接說清楚產品怎麼處�
 
 **區域網路直傳（Beta）**：同一網段的兩台裝置用一次性 6 碼配對與 QR Code 連線，每次連線以 ECDH 產生一次性金鑰，檔案以 AES-256-GCM 加密，收到後驗證 SHA-256。不經過任何伺服器，也不會碰到同步金鑰。
 
+## 送到外部 AI 之前
+
+外部 AI 只在你自備 API 金鑰（BYOK）、並在核准卡上核准該次呼叫後才使用。自 2026 年 11 月 25 日起：
+
+- **可逆佔位符。** 金鑰與 Token、My Note 防窺行（`!! …`）、Email、你電腦上的路徑，以及開啟遮罩時的電話，在句子與每個欄位裡都換成 `{{SECRET_1}}`、`{{EMAIL_1}}`、`{{PATH_1}}`、`{{PHONE_1}}` 等。核准卡顯示的就是實際送出的內容。回覆在你的裝置上還原；模型遺漏或捏造的佔位符原樣保留。原值對照表只在該次呼叫的記憶體裡，用完即清空，從不寫入儲存、日誌、追蹤或同步。
+- **風險分級。** 每個動作每次都依其定義重新分級：Tier 0 唯讀；Tier 1 在本機寫入（路徑參數不得含 `..`、絕對路徑、`~`、磁碟代號、URL scheme 或 NUL，包含 URL 編碼形式）；Tier 2 會送出、刪除或呼叫服務商，一律等你確認。呼叫端或模型都無法降級。
+- **有上限的輸出校驗。** 回覆格式不符時最多再要一次，仍不符就標示為未通過校驗、不套用。
+- **會冷卻的備用路線。** 回 429、伺服器錯誤或逾時的路線會冷卻（60 秒或依 Retry-After；30 秒起連續加倍、最多 5 分鐘），之後的呼叫從沒有冷卻的路線開始。只改變你核准過的路線順序。
+- **防護記錄。** 設定 › 隱私在本機保留最近 50 次外部 AI 呼叫：追蹤 id、時間、路線、遮了幾項、Tier 與校驗結果，沒有任何可以放文字的欄位，不同步也不匯出。
+
+## AI 上下文版本紀錄
+
+附加到對話的上下文，每個對象在本機最多保留 20 版，讀回時重算內容雜湊（被改過的版本直接丟棄）。還原前會先把畫面上的內容存成一版。版本紀錄從不同步，保護方式與工具庫相同：設定主密碼後以主密碼加密，鎖定時無法讀取。
+
+## 伴侶 CLI
+
+`toolowner`（v1 規格）在電腦上執行 App 本身的 My Note、連結名片與脫敏函式。它不發出任何網路請求，也不讀取登入狀態、API 金鑰或雲端設定。`guard scan` 只輸出佔位符與計數，絕不輸出原值；錯誤訊息也不會重複輸入內容。每次寫檔（`--out`）都必須留在指定的根目錄內（`..`、目錄外路徑與符號連結一律以結束碼 2 拒絕），寫入前先備份原檔，並回傳 receipt 編號，可用 `toolowner undo` 復原。請見 [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md)。
+
 ## 用 Network 面板自己驗證
 
 打開瀏覽器的開發者工具（F12，Mac 為 ⌥⌘I），切到 **Network** 分頁並清空清單。
@@ -123,5 +161,7 @@ Toolowner 不公開原始碼，所以這份文件直接說清楚產品怎麼處�
 - 所有舊裝置都遺失時的「重新開始」只需要登入的 session，因此被竊的 session 可以刪除同步資料的雲端副本（但永遠刪不到任何裝置上的筆記）。可取消的延遲刪除尚未實作。
 - 復原金鑰接管有速率限制：連續錯 5 次會鎖一小時，每次嘗試都有紀錄。
 - 金鑰輪替尚未實作；用 QR Code 把同步金鑰交給新裝置的配對也還沒有。
+- 送外部 AI 前的遮罩是規則式的。規則不認得的機密格式（例如用文字寫出的密碼）不會被找到。佔位符阻止「已知格式」的機密出站，不保證沒有任何敏感內容出站。
+- 防護記錄與 AI 上下文版本紀錄只在這台裝置上：清除網站資料或換裝置就會消失。
 - 目前沒有第三方安全稽核報告。
 - 裝置或瀏覽器本身遭入侵不在保護範圍內，這種情況下本機資料一樣會被讀取。

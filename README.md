@@ -51,11 +51,20 @@ Most AI tools send everything to a server and bill you per request. Toolowner do
 
 **01 · Local first, sign in to begin.** Activate your account with a friend’s invite link, or simply sign in, then collect early-bird points and choose whether to turn on end-to-end encrypted sync. Tools run in your browser, and what you make stays on this device by default. If the device can do it, AI is not asked.
 
-**02 · My Note that adds up, and covers up.** Write `1200 + 350*2 =` in a note and the answer is offered; `=SUM(ABOVE)` adds up the lines above. A line starting with `!!` stays covered until tapped, and covers itself again after 5 seconds. Chapters for long notes, a calendar reminder (.ics) for a to-do and related older notes are there too. All on the device, 0 tokens.
+**02 · My Note that adds up, and covers up.** Write `1200 + 350*2 =` in a note and the answer is offered; `=SUM(ABOVE)` adds up the lines above. A line starting with `!!` stays covered until tapped, and covers itself again after 5 seconds. Two ways to read: **Page** (the whole note) or **Sections** (a long note split at its headings into numbered cards, read and written one section at a time, like an e-book). The note stays one Markdown text either way. Tags fold to one line. Chapters, a calendar reminder (.ics) for a to-do and related older notes are there too. All on the device, 0 tokens.
 
 **03 · End-to-end encrypted sync, LAN direct transfer.** Sync (Beta) is optional: content is sealed with AES-256-GCM on your device before it is uploaded, and the server only ever holds ciphertext. Two devices on the same network can send a file straight across over WebRTC with no server in between (Beta).
 
 **04 · Studio: static mini-apps and a personal link card.** Pin a page you made as a static mini-app that runs nothing when opened. Fill in a name and 3–8 links and save one `.html` link card with no code in it, to host wherever you like.
+
+### New in late November 2026
+
+- **My Note: Page and Sections.** Switch a long note to Sections and it becomes numbered cards (title, a one-line summary, line count); open one, write in it, and step Previous · Next. Nothing about the saved note changes: sync, encryption and `.md` export see the same text.
+- **Reversible placeholders before outside AI.** Keys and tokens, `!!` shield lines, e-mails, paths on your computer and (when masking is on) phone numbers become `{{SECRET_1}}`, `{{EMAIL_1}}`, `{{PATH_1}}`, `{{PHONE_1}}` on the approval card and in the request. The answer is put back on your device, and the table of originals is cleared in memory right after. Actions are graded Tier 0 / 1 / 2 every time; anything that sends, deletes or calls a provider waits for you.
+- **Backup routes that rest.** With your own API key and backups set up, a route that answers 429, a server error or nothing in time rests for a while, and the next call starts with one that is not resting. It only reorders the routes you approved.
+- **Version history for the AI context.** What you attach to a chat keeps up to 20 versions on this device: compare any of them with what is on screen, and restore one (what you had is kept as a version first). It is never synced, and it is encrypted with your master password when you have set one.
+- **Guard log.** Settings › Privacy lists the last 50 outside-AI calls as counts only (route, how many items were masked, tier, check result), never their content.
+- **Companion CLI for agents (v1 spec).** `toolowner note split / join / eval`, `toolowner card build`, `toolowner guard scan` and `toolowner undo`: the app's own My Note, link-card and masking functions on the command line, offline, with `--dry-run`, `--schema`, JSON output and an undo receipt for every file it writes. See [SKILL.md](SKILL.md) and [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
 
 More: PDF and Excel merging, image and video compression, ZIP packing, JSON formatting, Chinese conversion, OCR, personal-data masking and link cleaning, slash commands, reusable recipes, and your own AI provider (OpenAI, Anthropic, Google Gemini, OpenRouter or a model on your own machine). The full list, each with its boundary, is on the [features page](https://toolowner.pages.dev/features).
 
@@ -63,6 +72,7 @@ More: PDF and Excel merging, image and video compression, ZIP packing, JSON form
 
 - **Kept on this device by default.** Notes, to-dos and whatever the tools process stay in your browser on this device. Local tools send nothing and keep working offline.
 - **End-to-end encrypted when you sync.** AES-256-GCM with a fresh 96-bit IV per record, a random 256-bit Vault Key, PBKDF2-HMAC-SHA-256 at 600,000 iterations for the sync passphrase, and a recovery key shown once. Encryption happens only on your device, with the browser's built-in WebCrypto.
+- **Placeholders, not secrets, go out.** Before an approved outside-AI call, keys, shield lines, e-mails and local paths are replaced with numbered placeholders and restored only on your device. Detection is rule-based: a secret in a shape it does not know is not found.
 - **No ads, no tracking.** No third-party analytics or tracking scripts. Content goes to an outside AI only when you set one up yourself (BYO API) and approve the call.
 - **Stated plainly:** with sync on, the server can see your sign-in identity and plan, opaque collection labels, padded record sizes, record and device ids, and sync timestamps; never the content or the device names.
 

@@ -4,6 +4,22 @@
 
 What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newest first. Every feature comes with its boundary; anything marked **Beta** is still being checked on real devices. The full list is on the [features page](https://toolowner.pages.dev/features).
 
+## 25 November 2026
+
+### New
+- **My Note: Page and Sections (e-book) view.** A long note splits at its `##` / `###` headings and `---` rules into numbered section cards; one section opens in the same editor (math and shield lines work inside it) with Previous · All sections · Next. Page is the default and the choice is remembered on the device. The note is still one Markdown text: sync, encryption, the table of contents and `.md` export are unchanged.
+- **My Note: tags fold to one line.** The first tag and "+N" with an arrow; the arrow shows every tag and the favourites to apply.
+- **Backup routes rest after a failure (your own API key).** 429: at least 60 s (or Retry-After); a server error or timeout: 30 s, doubling in a row up to 5 minutes; one good answer clears it. Timeouts now move a call to the next backup too. Only the order of routes you approved changes. Settings shows who answered and which route is resting.
+- **OmniRoute gateway (Web only).** A gateway on your own computer at `http://localhost:20128/v1`. It forwards to the cloud, so it is masked and approved one call at a time like any outside AI.
+- **Version history for the AI context.** Up to 20 versions of what you attach to a chat, on this device only: compare any version with the screen, save one by hand, restore one (what you had is kept first). Not synced; encrypted with your master password when one is set.
+- **Companion CLI for agents, v1 spec.** `toolowner note split / join / eval`, `card build`, `guard scan` and `undo`, offline, with `--usage`, `--schema`, `--dry-run`, `--output-format json`, exit codes 0 / 1 / 2 and an undo receipt for every file it writes. See [SKILL.md](SKILL.md) and [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
+
+### Security
+- **Reversible placeholders before outside AI.** Keys and tokens, My Note shield lines, e-mails, paths and (with masking on) phone numbers become `{{SECRET_n}}`, `{{EMAIL_n}}`, `{{PATH_n}}`, `{{PHONE_n}}` on the approval card and in the request, fields included. The answer is restored on this device and the table is cleared from memory; it is never stored, logged or synced.
+- **Risk tiers recomputed every time.** Tier 0 (read only), Tier 1 (local writes, with path checks: no `..`, absolute paths, `~`, drive letters, URL schemes or NUL), Tier 2 (sends, deletes or calls a provider: always waits for your confirmation).
+- **One bounded retry.** An answer that does not match the expected shape is asked for once more at most, then shown as unverified and not applied.
+- **Guard log.** The last 50 outside-AI calls in Settings › Privacy, counts only, never synced, cleared with two taps.
+
 ## November 2026
 
 ### New
@@ -27,6 +43,22 @@ What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newes
 # 更新日誌（繁體中文）
 
 Toolowner 體驗版（https://toolownert1.pages.dev）已上線的內容，由新到舊。每一項都附上邊界；標了 **Beta** 的仍在實機驗證。完整清單請見[全部功能](https://toolowner.pages.dev/features)。
+
+## 2026 年 11 月 25 日
+
+### 新增
+- **My Note 整頁與分塊（電子書）模式。** 長筆記依 `##`／`###` 標題與 `---` 分隔線切成編號區塊卡片；打開一塊就在同一個編輯器裡寫（算式與防窺行照常運作），用「上一塊 · 所有區塊 · 下一塊」翻頁。預設為整頁，選擇記在本機。筆記仍是同一份 Markdown：同步、加密、目錄與 `.md` 匯出都不變。
+- **My Note 標籤收合成一行。** 顯示第一個標籤與「+N」及箭頭；點箭頭展開全部標籤與可套用的常用標籤。
+- **失敗後會冷卻的備用路線（自備 API 金鑰）。** 429：至少 60 秒（或依 Retry-After）；伺服器錯誤或逾時：30 秒，連續失敗加倍、最多 5 分鐘；成功一次即解除。逾時現在也會轉到下一條備用。只改變你核准過的路線順序。設定會顯示由誰回答、哪條路線冷卻中。
+- **OmniRoute 閘道（僅 Web 版）。** 你自己電腦上的閘道 `http://localhost:20128/v1`。它會轉送到雲端，所以和任何外部 AI 一樣逐次遮罩、逐次核准。
+- **AI 上下文的版本紀錄。** 附加到對話的內容最多保留 20 版，只在本機：任一版都能與畫面比對、手動存一版、還原此版本（會先保留目前內容）。不同步；設定主密碼後以主密碼加密。
+- **給 Agent 用的伴侶 CLI，v1 規格。** `toolowner note split / join / eval`、`card build`、`guard scan` 與 `undo`，離線執行，支援 `--usage`、`--schema`、`--dry-run`、`--output-format json`，結束碼 0／1／2，每次寫檔都留下可復原的 receipt。請見 [SKILL.md](SKILL.md) 與 [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md)。
+
+### 安全性
+- **送外部 AI 前的可逆佔位符。** 金鑰與 Token、My Note 防窺行、Email、路徑與（開啟遮罩時的）電話，在核准卡與請求中（包含欄位）都變成 `{{SECRET_n}}`、`{{EMAIL_n}}`、`{{PATH_n}}`、`{{PHONE_n}}`。回覆在本機還原，對照表隨即從記憶體清空，不儲存、不記錄、不同步。
+- **每次重算的風險分級。** Tier 0（唯讀）、Tier 1（本機寫入，並檢查路徑：不得含 `..`、絕對路徑、`~`、磁碟代號、URL scheme 或 NUL）、Tier 2（會送出、刪除或呼叫服務商：一律等你確認）。
+- **有上限的重試。** 回覆格式不符時最多再要一次，仍不符就標示為未通過校驗、不套用。
+- **防護記錄。** 設定 › 隱私列出最近 50 次外部 AI 呼叫，只有計數，不同步，點兩下即可清除。
 
 ## 2026 年 11 月
 
