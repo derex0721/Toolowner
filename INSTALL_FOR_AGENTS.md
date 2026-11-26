@@ -6,20 +6,34 @@ For Claude Code, Codex, Cue and other coding agents. Read `SKILL.md` for when to
 
 | Need | Value |
 | --- | --- |
-| Node.js | 22 or newer |
+| Node.js | 22.18 or newer |
 | Dependencies | None at run time |
 | Network | None. The CLI imports no network module and makes no request |
 | Credentials | None. It reads no sign-in session, API key, Supabase URL or token |
 | Disk | Only `--out` files and the undo folder (`<root>/.toolowner/undo` by default) |
 
-## Availability
+## Install
 
-This repository documents the CLI's interface; it does not contain the CLI or any Toolowner source code (see [LICENSE](LICENSE)). The CLI is not yet published as a package. Once you have a build installed, check it with:
+From GitHub Releases, tag [`cli-v1.0.0`](https://github.com/derex0721/Toolowner/releases/tag/cli-v1.0.0) (plain JavaScript, no dependencies):
 
 ```sh
-toolowner --version
-toolowner --usage --output-format json
+npm install -g https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0/toolowner-1.0.0.tgz
+toolowner --version   # 1.0.0
 ```
+
+Without installing: check the archive against `SHA256SUMS.txt`, unpack it and run it with Node (on Windows use the `.zip` and `node toolowner-cli-v1.0.0\bin\toolowner.js`):
+
+```sh
+base=https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0
+curl -LO $base/toolowner-cli-v1.0.0.tar.gz && curl -LO $base/SHA256SUMS.txt
+grep toolowner-cli-v1.0.0.tar.gz SHA256SUMS.txt | shasum -a 256 -c   # → OK
+tar -xzf toolowner-cli-v1.0.0.tar.gz
+node toolowner-cli-v1.0.0/bin/toolowner.js --usage
+```
+
+npm: not published yet. Until `toolowner` is on the npm registry, install from the release above.
+
+This repository holds the documentation only; the CLI is attached to the release with its own `LICENSE` (free to install and run unmodified). The Toolowner app and its source code are not included (see [LICENSE](LICENSE)).
 
 ## Calling convention
 
@@ -54,5 +68,5 @@ toolowner undo --receipt r-20261125093000-1a2b3c4d --output-format json
 | `missing_input` | No `--in`, `--text` or piped input | Pass one of them |
 | `card_invalid` | Fewer than 3 or more than 8 links, no name, or a link that is not http/https | Fix the rows listed in the message |
 | `changed_since_write` | The file was edited after the write | Check it; `--force` undoes anyway |
-| `toolowner: command not found` | The CLI is not installed or not on `PATH` | Install a build, then open a new shell |
+| `toolowner: command not found` | The CLI is not installed or not on `PATH` | Run the `npm install -g` line above, then open a new shell |
 | `guard scan` finds nothing in a key | The shape is not one Toolowner recognises | Treat the text as sensitive anyway; the scan lowers risk, it does not prove absence |

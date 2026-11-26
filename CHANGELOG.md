@@ -4,6 +4,11 @@
 
 What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newest first. Every feature comes with its boundary; anything marked **Beta** is still being checked on real devices. The full list is on the [features page](https://toolowner.pages.dev/features).
 
+## 26 November 2026
+
+### New
+- **Companion CLI v1.0.0 on GitHub Releases** (tag `cli-v1.0.0`). `npm install -g https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0/toolowner-1.0.0.tgz`, or the `.tar.gz` / `.zip` checked against `SHA256SUMS.txt`. Node.js 22.18 or newer, no dependencies, no network request. It contains only the CLI and the local functions it calls (My Note sections and math, the link card, the guard scan, undo receipts); no sync, cloud, key or app code. Not on the npm registry yet. See [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
+
 ## 25 November 2026
 
 ### New
@@ -43,6 +48,11 @@ What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newes
 # 更新日誌（繁體中文）
 
 Toolowner 體驗版（https://toolownert1.pages.dev）已上線的內容，由新到舊。每一項都附上邊界；標了 **Beta** 的仍在實機驗證。完整清單請見[全部功能](https://toolowner.pages.dev/features)。
+
+## 2026 年 11 月 26 日
+
+### 新增
+- **伴侶 CLI v1.0.0 上架 GitHub Releases**（標籤 `cli-v1.0.0`）。`npm install -g https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0/toolowner-1.0.0.tgz`，或下載 `.tar.gz`／`.zip` 並以 `SHA256SUMS.txt` 核對。需 Node.js 22.18 以上，零相依、不發出任何網路請求。內容只有 CLI 與它呼叫的本機函式（My Note 分塊與算式、連結名片、guard 脫敏、undo receipt），不含同步、雲端、金鑰或 App 程式碼。尚未上架 npm。請見 [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md)。
 
 ## 2026 年 11 月 25 日
 

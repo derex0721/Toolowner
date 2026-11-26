@@ -64,7 +64,7 @@ Most AI tools send everything to a server and bill you per request. Toolowner do
 - **Backup routes that rest.** With your own API key and backups set up, a route that answers 429, a server error or nothing in time rests for a while, and the next call starts with one that is not resting. It only reorders the routes you approved.
 - **Version history for the AI context.** What you attach to a chat keeps up to 20 versions on this device: compare any of them with what is on screen, and restore one (what you had is kept as a version first). It is never synced, and it is encrypted with your master password when you have set one.
 - **Guard log.** Settings › Privacy lists the last 50 outside-AI calls as counts only (route, how many items were masked, tier, check result), never their content.
-- **Companion CLI for agents (v1 spec).** `toolowner note split / join / eval`, `toolowner card build`, `toolowner guard scan` and `toolowner undo`: the app's own My Note, link-card and masking functions on the command line, offline, with `--dry-run`, `--schema`, JSON output and an undo receipt for every file it writes. See [SKILL.md](SKILL.md) and [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
+- **Companion CLI for agents (v1).** `toolowner note split / join / eval`, `toolowner card build`, `toolowner guard scan` and `toolowner undo`: the app's own My Note, link-card and masking functions on the command line, offline, with `--dry-run`, `--schema`, JSON output and an undo receipt for every file it writes. Install from [GitHub Releases](https://github.com/derex0721/Toolowner/releases/tag/cli-v1.0.0) (Node.js 22.18+, no dependencies): `npm install -g https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0/toolowner-1.0.0.tgz`. Not on npm yet. See [SKILL.md](SKILL.md) and [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
 
 More: PDF and Excel merging, image and video compression, ZIP packing, JSON formatting, Chinese conversion, OCR, personal-data masking and link cleaning, slash commands, reusable recipes, and your own AI provider (OpenAI, Anthropic, Google Gemini, OpenRouter or a model on your own machine). The full list, each with its boundary, is on the [features page](https://toolowner.pages.dev/features).
 
@@ -97,4 +97,4 @@ More ways to support (OEN, ECPay) are coming.
 
 ## License
 
-Copyright © 2026 Toolowner. All rights reserved. Toolowner is proprietary software; nothing in this repository grants a licence to the product or its source code. See [LICENSE](LICENSE).
+Copyright © 2026 Toolowner. All rights reserved. Toolowner is proprietary software; nothing in this repository grants a licence to the product or its source code. See [LICENSE](LICENSE). The companion CLI on GitHub Releases carries its own `LICENSE`: free to install and run unmodified.

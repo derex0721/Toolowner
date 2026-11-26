@@ -7,6 +7,15 @@ description: Use the local toolowner CLI to split, join and work out the math in
 
 `toolowner` is Toolowner's companion command line. It runs the same Way Core functions the app uses, on this computer only. It makes no network request and reads no sign-in session, API key or cloud setting.
 
+## Install
+
+```sh
+npm install -g https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0/toolowner-1.0.0.tgz
+toolowner --version
+```
+
+Node.js 22.18 or newer. Other ways (checksums, no install) are in `INSTALL_FOR_AGENTS.md`. Not on the npm registry yet.
+
 ## When to use it
 
 | Task | Command |

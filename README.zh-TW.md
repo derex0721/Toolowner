@@ -66,7 +66,7 @@
 - **會冷卻的備用路線。** 自備 API 金鑰並設定備用後，回 429、伺服器錯誤或逾時的路線會先冷卻一段時間，下一次呼叫從沒有冷卻的路線開始。它只調整你核准過的路線順序。
 - **AI 上下文的版本紀錄。** 附加到對話的內容在本機最多保留 20 版：任一版都能和畫面上的內容比對，也能還原（還原前會先把目前內容存成一版）。不會同步；設定主密碼後以主密碼加密。
 - **防護記錄。** 設定 › 隱私列出最近 50 次外部 AI 呼叫，只有計數（路線、遮了幾項、Tier、校驗結果），沒有任何內容。
-- **給 Agent 用的伴侶 CLI（v1 規格）。** `toolowner note split / join / eval`、`toolowner card build`、`toolowner guard scan` 與 `toolowner undo`：把 App 本身的 My Note、連結名片與脫敏函式帶到命令列，離線執行，支援 `--dry-run`、`--schema`、JSON 輸出，每次寫檔都有可復原的 receipt。請見 [SKILL.md](SKILL.md) 與 [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md)。
+- **給 Agent 用的伴侶 CLI（v1）。** `toolowner note split / join / eval`、`toolowner card build`、`toolowner guard scan` 與 `toolowner undo`：把 App 本身的 My Note、連結名片與脫敏函式帶到命令列，離線執行，支援 `--dry-run`、`--schema`、JSON 輸出，每次寫檔都有可復原的 receipt。從 [GitHub Releases](https://github.com/derex0721/Toolowner/releases/tag/cli-v1.0.0) 安裝（Node.js 22.18 以上，零相依）：`npm install -g https://github.com/derex0721/Toolowner/releases/download/cli-v1.0.0/toolowner-1.0.0.tgz`。尚未上架 npm。請見 [SKILL.md](SKILL.md) 與 [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md)。
 
 ## 隱私與安全摘要
 
@@ -97,4 +97,4 @@ Toolowner 是獨立開發的產品。如果它幫你省下時間，歡迎支持�
 
 ## 授權
 
-Copyright © 2026 Toolowner. 版權所有。Toolowner 為封閉原始碼的商業軟體；本倉庫的任何內容都不授予產品或其原始碼的使用授權。詳見 [LICENSE](LICENSE)。
+Copyright © 2026 Toolowner. 版權所有。Toolowner 為封閉原始碼的商業軟體；本倉庫的任何內容都不授予產品或其原始碼的使用授權。詳見 [LICENSE](LICENSE)。GitHub Releases 上的伴侶 CLI 附有自己的 `LICENSE`：可免費安裝並執行未經修改的版本。
