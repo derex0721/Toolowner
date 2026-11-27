@@ -4,6 +4,20 @@
 
 What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newest first. Every feature comes with its boundary; anything marked **Beta** is still being checked on real devices. The full list is on the [features page](https://toolowner.pages.dev/features).
 
+## 27 November 2026
+
+### New
+- **My Note: ranked search and imports.** Search ranks notes by BM25 relevance and keeps dates and codes (`2026-11-27`, `A-102`) whole. Exports from Obsidian, Notion and Evernote import, parsed on your device.
+- **Traditional ↔ Simplified, and garbled files rescued.** The Aa panel converts the note or the selection from a fixed table on your device (0 tokens, one undo step), leaving code, web addresses and `{{…}}` alone. Old Big5 / GBK files are read with the right encoding, using only the browser's own TextDecoder.
+- **Find AI on your computer, and request limits.** Settings › AI asks only the loopback addresses the app already allows (11434, 8080, 20128), and only when you press the button. Outside AI with your own key can have a daily / monthly request limit that stops before the approval card.
+- **Intel: clusters, OPML and feed health.** The same event from several feeds is one card, the first-hand source on top. OPML import reads only `<outline>` tags, refuses any DOCTYPE / ENTITY and keeps http / https addresses only; past the 10-subscription limit you tick which to keep. Export writes a standard, fully escaped `.opml`. A feed that keeps failing rests with exponential backoff (15 minutes, doubling, up to 24 hours), shows a quiet status tag and has a Retry now button, without slowing the healthy feeds.
+- **#4 element picker and "Add to a note section".** A block tapped in the visual editor is saved to My Note as clean Markdown, read from its HTML string (no page script runs). An intel item can be appended to an existing note as a new `## title` section at its end; the note's earlier text is kept exactly.
+- **Declarative JSON plugins.** In Settings › Plugins, add or import a JSON manifest: snippets (your own `/` commands that insert fixed Markdown) or text rules (fixed words or guarded regular expressions, applied to the selection or the whole note, undone in one step). Plugins are data only: a closed list of fields, 16 KB, up to 30 snippets or 50 rules, any script field refused, risky patterns (nested quantifiers, back-references, look-around) refused before saving, and every run ended after 1 second.
+
+### Security
+- **JSON plugins cannot run code.** No `eval`, no `new Function`, no script loading: a manifest is checked field by field before it is stored, re-checked every time it is read, and a pattern is compiled only after a static complexity check; the rules then run in their own Worker with network and storage switched off, ended after 1 second.
+- **OPML without an XML parser.** Subscription lists are read as text: DOCTYPE / ENTITY declarations are refused (no external entities, no entity expansion), only the five XML entities and numeric references are decoded, and only http / https addresses without a user name or password are kept.
+
 ## 25 November 2026
 
 ### New
@@ -43,6 +57,20 @@ What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newes
 # 更新日誌（繁體中文）
 
 Toolowner 體驗版（https://toolownert1.pages.dev）已上線的內容，由新到舊。每一項都附上邊界；標了 **Beta** 的仍在實機驗證。完整清單請見[全部功能](https://toolowner.pages.dev/features)。
+
+## 2026 年 11 月 27 日
+
+### 新增
+- **My Note 排序搜尋與第三方匯入。** 搜尋依 BM25 相關度排序，日期與代碼（`2026-11-27`、`A-102`）保持完整；可匯入 Obsidian、Notion 與 Evernote 的匯出檔，全在你的裝置上解析。
+- **轉繁簡與亂碼救援。** Aa 面板用本機固定字表轉換整篇或選取（0 Token、一步復原），不動程式碼、網址與 `{{…}}`；Big5／GBK 舊檔自動以正確編碼讀取，只用瀏覽器內建的 TextDecoder。
+- **偵測本機 AI 與請求次數上限。** 設定 › AI 只在你按下時，詢問 App 已允許的回環位址（11434、8080、20128）；自備金鑰的外部 AI 可設每日／每月最多請求次數，到達上限就停在核准卡前。
+- **情報聚簇、OPML 與來源健康。** 多個來源報導同一件事時折成一張卡，一手來源在前。OPML 匯入只讀 `<outline>`，拒絕任何 DOCTYPE／ENTITY，只收 http／https；超過 10 個訂閱上限時讓你勾選要留哪些。匯出為完整跳脫的標準 `.opml`。連續失敗的來源以指數退避休息（15 分鐘起、倍增、上限 24 小時），低調顯示狀態標籤並可「立即重試」，不拖慢正常的來源。
+- **#4 元素選取器與「加入筆記分塊」。** 視覺編輯器裡點選的區塊，從它的 HTML 字串轉成乾淨的 Markdown 存進 My Note（不執行頁面腳本）。情報可附加成既有筆記底部的 `## 標題` 新區塊，原有文字一字不動。
+- **宣告式 JSON 外掛。** 在設定 › 外掛新增或匯入 JSON 設定檔：快捷片段（自訂 `/` 指令插入固定 Markdown）或文字規則（固定字詞或受限正規表示式，套用到選取或全文，一步復原）。外掛只是資料：欄位白名單、16 KB、最多 30 個片段或 50 條規則，含腳本的欄位一律拒絕，可能失控的正規表示式（巢狀量詞、回溯參照、環視）在儲存前就擋下，每次執行 1 秒後強制終止。
+
+### 安全
+- **JSON 外掛不能執行程式碼。** 沒有 `eval`、`new Function` 或動態載入腳本：設定檔儲存前逐欄檢查、每次讀取再檢查一次，正規表示式先通過靜態複雜度檢查才編譯；規則在獨立的 Worker 執行（關閉網路與儲存），1 秒後強制終止。
+- **OPML 不交給 XML 解析器。** 訂閱清單以純文字讀取：拒絕 DOCTYPE／ENTITY 宣告（沒有外部實體、沒有實體展開），只解碼五個 XML 實體與數字參照，只保留不含帳號密碼的 http／https 網址。
 
 ## 2026 年 11 月 25 日
 
