@@ -4,6 +4,16 @@
 
 What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newest first. Every feature comes with its boundary; anything marked **Beta** is still being checked on real devices. The full list is on the [features page](https://toolowner.pages.dev/features).
 
+## 27 November 2026
+
+### New
+- **Companion CLI v1.1.0** (tag `cli-v1.1.0`, built; release pending). Three local commands and a prompt, still with no dependencies, no network request and no shell or child process:
+  - `toolowner note toc`: a long note's chapters (`#` to `###`, code fences skipped) as an e-book table of contents; read only.
+  - `toolowner capsule pack`: seal a text file into the same offline self-decrypting `.html` capsule the app makes (PBKDF2-SHA256 600,000 + AES-256-GCM). The passphrase comes from an environment variable you name with `--passphrase-env`, or a hidden prompt; it is never printed, logged, written to a receipt or accepted as a flag. `--dry-run` and undo receipts as for every write.
+  - `toolowner capsule inspect`: check that an `.html` is an intact capsule (fixed algorithms, sane sizes, the page unchanged) without decrypting it or running its script.
+  - `toolowner repl`: run these commands one after another at a prompt, switch JSON output, list the session's receipts. Words are split with quotes only; nothing is expanded or run. `toolowner` with no arguments still prints the usage and exits 2.
+  - Each release now also carries `MANIFEST.txt` (SHA-256 of every packed file) and `TEST.md`. See [SKILL.md](SKILL.md) and [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
+
 ## 26 November 2026
 
 ### New
@@ -48,6 +58,16 @@ What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newes
 # 更新日誌（繁體中文）
 
 Toolowner 體驗版（https://toolownert1.pages.dev）已上線的內容，由新到舊。每一項都附上邊界；標了 **Beta** 的仍在實機驗證。完整清單請見[全部功能](https://toolowner.pages.dev/features)。
+
+## 2026 年 11 月 27 日
+
+### 新增
+- **伴侶 CLI v1.1.0**（標籤 `cli-v1.1.0`，已建置，待發布）。新增三個本機指令與互動模式，仍然零相依、不發出網路請求、不啟動 shell 或子行程：
+  - `toolowner note toc`：抽取長筆記的章節目錄（`#` 到 `###`，略過程式碼區塊），E-book 大綱；只讀。
+  - `toolowner capsule pack`：把文字檔封成與 App 相同的離線自解密 `.html` 膠囊（PBKDF2-SHA256 600,000 + AES-256-GCM）。密碼從 `--passphrase-env` 指定的環境變數或隱藏輸入讀取，絕不印出、記錄、寫進 receipt，也不接受以參數傳入。支援 `--dry-run` 與 undo receipt。
+  - `toolowner capsule inspect`：檢查 `.html` 是否為完整的靜態膠囊（固定演算法、合理大小、頁面未被修改），不解密、不執行其中腳本。
+  - `toolowner repl`：在提示字元下連續執行上述指令、切換 JSON 輸出、列出本次 session 的 receipt。只以引號切字，不展開、不執行任何東西。無參數執行 `toolowner` 仍印出用法並以結束碼 2 結束。
+  - 每次發布另附 `MANIFEST.txt`（套件內每個檔案的 SHA-256）與 `TEST.md`。請見 [SKILL.md](SKILL.md) 與 [INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md)。
 
 ## 2026 年 11 月 26 日
 
