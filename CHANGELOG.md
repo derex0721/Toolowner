@@ -4,6 +4,18 @@
 
 What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newest first. Every feature comes with its boundary; anything marked **Beta** is still being checked on real devices. The full list is on the [features page](https://toolowner.pages.dev/features).
 
+## 28 November 2026
+
+### New
+- **My Note: "AI tidy this section".** In the Sections view, one open section can be tidied by your own AI. Only that section is sent, never the rest of the note, through the same placeholders, per-call budget, request limits and approval card as every outside call, and each batch is approved on its own. The result is shown first; "Apply to this section" puts it in as one undo step.
+- **Slow models get smaller batches.** When a long section or a thinking model runs out of time or is cut off, the rest is sent in halves (down to 500 characters), and the size that worked is remembered for that model on your device only (not synced).
+- **Sources under an answer.** When an answer used notes you quoted with `@`, it ends with quiet chips, "note › section", that open the note in My Note at that section. Sources are found on your device from the lines you actually quoted and the notes that exist; a title or id written by the model is never used.
+- **Encrypted capsule with an expiry.** A note's share sheet can save it as an encrypted `.html` with a passphrase and an optional expiry (24 hours, 7 days, 30 days or none). It opens offline in any browser with no network request; after the expiry it says "This share has expired" and shows none of the note. The text toolkit's capsule has the same choice.
+
+### Security
+- **The expiry is inside the ciphertext.** It is sealed with the note in AES-256-GCM, so changing or removing it breaks the authentication tag, and relabelling the file as an older version still has it checked. Limit: the check runs in the reader's browser against the reader's clock; someone with the passphrase who rewrites the page or sets the clock back can still read it. It stops showing; it is not remote deletion.
+- **Capsule page in dark mode.** The decrypt card no longer turns white behind light text in a dark theme.
+
 ## 27 November 2026
 
 ### New
@@ -57,6 +69,18 @@ What has shipped in the Toolowner web app (https://toolownert1.pages.dev), newes
 # 更新日誌（繁體中文）
 
 Toolowner 體驗版（https://toolownert1.pages.dev）已上線的內容，由新到舊。每一項都附上邊界；標了 **Beta** 的仍在實機驗證。完整清單請見[全部功能](https://toolowner.pages.dev/features)。
+
+## 2026 年 11 月 28 日
+
+### 新增
+- **My Note「AI 整理此區塊」。** 分塊模式下，可用你自己的 AI 整理目前開啟的這一塊。只送出這一塊、不送整篇筆記，並經過與所有外部呼叫相同的可逆佔位符、單次預算、請求上限與核准卡，每一批各自核准。結果先顯示，按「套用至此區塊」才寫回，可一步復原。
+- **慢模型自動改小批次。** 長區塊或思考模型逾時、回覆被截斷時，剩下的內容自動減半分批送出（最小 500 字），並在你的裝置上為該模型記住合適的大小（不同步）。
+- **回答附上出處。** 用 `@` 引用筆記後得到的回答，下方附「筆記 › 區塊」淡色膠囊，點一下就在 My Note 打開那則筆記的那一塊。出處只由本機比對你真正引用的筆記行與目前存在的筆記決定，不採信模型寫的標題或 ID。
+- **限時加密膠囊。** 筆記的分享面板可存成加密 `.html`：設定密碼與選填有效期限（24 小時、7 天、30 天或不限期）。任何瀏覽器離線就能開啟、零網路請求；到期後顯示「此分享已過期」，不呈現任何原文。文字工具的加密膠囊也有同樣的選項。
+
+### 安全
+- **到期時間封在密文裡。** 與筆記一起用 AES-256-GCM 加密，改動或移除都會讓認證標籤驗證失敗；把檔案改標成舊版本也照樣檢查。限制：檢查在讀者的瀏覽器、依讀者的時鐘進行；持有密碼又改寫頁面或調回時鐘的人仍可讀取。這是「到期不再顯示」，不是遠端刪除。
+- **膠囊頁的深色模式。** 解密卡片在深色主題下不再變成白底配淺色字。
 
 ## 2026 年 11 月 27 日
 
